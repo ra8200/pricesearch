@@ -1,4 +1,4 @@
-import NavBar from '@/components/NavBar'
+import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk } from 'next/font/google'
@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main className='max-w-10xl mx-auto'>
-          <NavBar />
+          <Navbar />
           {children}
         </main>
       </body>
