@@ -25,7 +25,7 @@ const SearchBar = () => {
   const [searchPrompt, setSearchPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
     const isValidLink = isValidAmazonProductLink(searchPrompt);
@@ -36,6 +36,7 @@ const SearchBar = () => {
       setIsLoading(true);
 
       // Scrape the product page
+      const product = await scrapeAndStoreProduct(searchPrompt);
     } catch (error) {
       console.log(error);
     } finally {
@@ -55,13 +56,13 @@ const SearchBar = () => {
         placeholder="Enter product link"
         className="searchbar-input"
       />
+
       <button 
         type="submit" 
         className="searchbar-btn"
         disabled={searchPrompt === ''}
       >
         {isLoading ? 'Searching...' : 'Search'}
-        Search
       </button>
     </form>
   )
