@@ -2,7 +2,7 @@
 
 import { scrapeAmazonProduct } from '../scraper';
 
-export async function scrapeAndStorProduct(productUrl: string) {
+export async function scrapeAndStoreProduct(productUrl: string) {
  if(!productUrl) return;
  
  try {

@@ -12,7 +12,7 @@ const Home = () => {
               Smart Shopping Starts Here:
               <Image 
                 src="/assets/icons/arrow-right.svg"
-                alt="arrow right"
+                alt="arrow-right"
                 width={16}
                 height={16}
               />
