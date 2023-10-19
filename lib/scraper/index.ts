@@ -52,8 +52,8 @@ export async function scrapeAmazonProduct(url: string) {
             $('#imgBlkFront').attr('data-a-dynamic-image') ||
             $('#landingImage').attr('data-a-dynamic-image');
 
-        console.log(title, currentPrice, originalPrice, outOfStock);
+        console.log(title, currentPrice, originalPrice, outOfStock, image);
     } catch (error: any) {      
-        throw new Error(`Failed to scrape product: ${error.message}`);     
+        throw new Error(`Failed to scrape product: ${error.message}`);   
     }
 }
