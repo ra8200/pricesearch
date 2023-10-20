@@ -1,5 +1,6 @@
 'use server'
 
+import { connect } from "http2";
 // import { revalidatePath } from "next/cache";
 // import Product from "../models/product.model";
 // import { connectToDB } from "../mongoose";
@@ -12,9 +13,14 @@ export async function scrapeAndStoreProduct(productUrl: string) {
  if(!productUrl) return;
  
  try {
-    const scrapedProduct = await scrapeAmazonProduct(productUrl);
+   connectToDB();
+   
+   const scrapedProduct = await scrapeAmazonProduct(productUrl);
     
+   if(!scrapedProduct) return;
+
+
  } catch (error: any) {
-    throw new Error(`Failed to create/update product: ${error.message}`)
+   throw new Error(`Failed to create/update product: ${error.message}`)
  }
 }
