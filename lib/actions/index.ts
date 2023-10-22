@@ -7,7 +7,7 @@ import { connectToDB } from "../mongoose";
 import { scrapeAmazonProduct } from "../scraper";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { User } from "@/types";
-import { generateEmailBody, sendEmail } from "../nodemailer";
+//import { generateEmailBody, sendEmail } from "../nodemailer";
 
 export async function scrapeAndStoreProduct(productUrl: string) {
  if(!productUrl) return;
@@ -48,4 +48,30 @@ export async function scrapeAndStoreProduct(productUrl: string) {
  } catch (error: any) {
    throw new Error(`Failed to create/update product: ${error.message}`)
  }
+}
+
+export async function getProductByID(productID: string) {
+  try {
+    connectToDB();
+
+    const product = await Product.findOne({ _id: productID });
+
+    if(!product) return null
+
+    return product;
+  } catch (error: any) {
+    console.log(error)
+  }
+}
+
+export async function getAllProducts() {
+  try {
+    connectToDB();
+
+    const products = await Product.find();
+
+    return products;
+  } catch(error) {
+    console.log(error);
+  }
 }
