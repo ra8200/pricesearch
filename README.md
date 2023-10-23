@@ -62,7 +62,7 @@ Follow these steps to install and run the project:
    Run the following command to start the server:
 
    ```bash
-   npm run start
+   npm run dev
    ```
 
 Now, you should be able to access the project at `http://localhost:3000`.
