@@ -91,7 +91,7 @@ const transporter = nodemailer.createTransport({
   maxConnections: 1
 })
 
-export const sendEmail = async (emailContent: EmailContent, sendTo: string[]) => {
+export const sendMail = async (emailContent: EmailContent, sendTo: string[]) => {
   const mailOptions = {
     from: 'sharasmine@outlook.com',
     to: sendTo,
@@ -99,7 +99,7 @@ export const sendEmail = async (emailContent: EmailContent, sendTo: string[]) =>
     subject: emailContent.subject,
   }
 
-  transporter.sendEmail(mailOptions, (error: any, info: any) => {
+  transporter.sendMail(mailOptions, (error: any, info: any) => {
     if(error) return console.log(error);
 
     console.log('Email sent:: ', info)
