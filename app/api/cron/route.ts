@@ -5,6 +5,10 @@ import { scrapeAmazonProduct } from "@/lib/scraper";
 import { getAveragePrice, getEmailNotifType, getHighestPrice, getLowestPrice } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
+export const maxDuration = 300; // 5 minutes
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function get() {
     try {
         connectToDB();
@@ -14,7 +18,7 @@ export async function get() {
         if(!products) throw new Error("No products found");
 
         // 1. SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
-        const updatedPProducts = await Promise.all(
+        const updatedProducts = await Promise.all(
             products.map(async (currentProduct) => {
                 const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
                
@@ -34,7 +38,7 @@ export async function get() {
                   }
               
                 const updatedProduct = await Product.findOneAndUpdate(
-                  { url: scrapedProduct.url },
+                  { url: product.url },
                   product,
                 );
                
@@ -58,7 +62,7 @@ export async function get() {
             })
         )
       return NextResponse.json({
-        message: 'Ok', data: updatedPProducts
+        message: 'Ok', data: updatedProducts
       })
     } catch (error) {
         throw new Error(`Error 1 Get: ${error}`)
