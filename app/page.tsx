@@ -2,7 +2,6 @@ import HeroCarousel from '@/components/HeroCarousel'
 import SearchBar from '@/components/SearchBar'
 import Image from 'next/image'
 import { getAllProducts } from '@/lib/actions'
-import { all } from 'axios'
 import ProductCard from '@/components/ProductCard'
 
 const Home = async () => {
